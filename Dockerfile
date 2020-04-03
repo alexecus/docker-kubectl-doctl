@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-ENV DOCTL_VERSION 1.23.1
+ENV DOCTL_VERSION 1.39.0
 
 RUN apt-get update && apt-get install -y curl
 
