@@ -1,8 +1,10 @@
 FROM debian:stretch
 
 ENV DOCTL_VERSION 1.39.0
+ENV HELM_VERSION v3.1.2
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && \
+    apt-get install -y curl
 
 # Install Kubectl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
@@ -15,6 +17,5 @@ RUN chmod +x ./doctl
 RUN mv ./doctl /usr/local/bin/
 
 # Install Helm
-RUN curl -LO https://git.io/get_helm.sh
-RUN chmod a+x get_helm.sh
-RUN ./get_helm.sh
+RUN curl -L https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar -xzO linux-amd64/helm > /usr/local/bin/helm
+RUN chmod +x /usr/local/bin/helm
